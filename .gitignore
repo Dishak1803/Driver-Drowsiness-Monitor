@@ -1,7 +1,7 @@
 echo ".venv/
+.venv-3/
 __pycache__/
 *.pyc
 *.h5
 *.pkl
-*.egg-info/
 .env" > .gitignore
