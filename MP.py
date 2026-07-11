@@ -2,17 +2,21 @@ import os
 import shutil
 
 # ─────────────────────────────────────────────────────────────
-# YOUR DATASET PATHS — change these if your location is different
+# DATASET PATHS — relative to this script's location
+#   Place your downloaded Kaggle dataset folders here before running:
+#     data/dataset2/
+#     data/dataset3/
 # ─────────────────────────────────────────────────────────────
-DATASET2    = r"C:\Users\Disha\Downloads\dataset2"
-DATASET3    = r"C:\Users\Disha\Downloads\dataset3"
+BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
+DATASET2    = os.path.join(BASE_DIR, "data", "dataset2")
+DATASET3    = os.path.join(BASE_DIR, "data", "dataset3")
 
 # This is the NEW folder we will create to hold all merged eye images
-EYES_MERGED = r"C:\Users\Disha\Downloads\eyes_combined"
+EYES_MERGED = os.path.join(BASE_DIR, "data", "eyes_combined")
 
 # ─────────────────────────────────────────────────────────────
 # STEP 1 — Create the output folder structure
-#   eyes_combined/
+#   data/eyes_combined/
 #       ├── open/
 #       └── closed/
 # ─────────────────────────────────────────────────────────────

@@ -78,13 +78,20 @@ Press `q` to quit the live feed.
 
 Pre-trained models (`eye_model.h5`, `yawn_model.h5`) are already included, so this step isn't required to run the project.
 
-Trained on Kaggle eye-state datasets (open/closed eyes). `MP.py` merges multiple raw dataset folders into a single unified `open/`/`closed/` structure before training — update the `DATASET2`/`DATASET3` paths at the top of the script to match your local download location.
+Trained on Kaggle eye-state datasets (open/closed eyes). To retrain from scratch:
 
-To retrain from scratch:
 1. Download an eye-state dataset from Kaggle (e.g. search "open closed eyes dataset")
-2. Update the paths in `MP.py` to point to your downloaded folders
-3. Run `python MP.py` to merge and organize the data
+2. Place the downloaded dataset folders inside a `data/` folder in the project root, named to match what `MP.py` expects:
+   ```
+   Driver_Drowsiness/
+   └── data/
+       ├── dataset2/
+       └── dataset3/
+   ```
+3. Run `python MP.py` — this merges both datasets into `data/eyes_combined/open/` and `data/eyes_combined/closed/`
 4. Run `python train_eye.py` (and `train_yawn.py` for the yawn dataset, sourced similarly)
+
+The `data/` folder is excluded from version control via `.gitignore`, so raw datasets stay local and don't bloat the repo.
 
 ## Tech Stack
 - Python, OpenCV, dlib
