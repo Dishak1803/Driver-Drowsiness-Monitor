@@ -5,8 +5,9 @@ import os
 from tensorflow.keras.models import load_model
 
 print("Loading models...")
-eye_model  = load_model(r"C:\Users\Disha\Driver_Drowsiness\eye_model.h5")
-yawn_model = load_model(r"C:\Users\Disha\Driver_Drowsiness\yawn_model.h5")
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+eye_model  = load_model(os.path.join(BASE_DIR, "eye_model.h5"))
+yawn_model = load_model(os.path.join(BASE_DIR, "yawn_model.h5"))
 print("✅ Models loaded!")
 
 face_cascade  = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -20,7 +21,6 @@ closed_frame_count = 0
 alarm_playing      = False
 
 def play_alarm():
-    # plays alarm using windows powershell beep — no external library needed
     global alarm_playing
     alarm_playing = True
     for _ in range(5):
@@ -37,7 +37,6 @@ def trigger_alarm():
         t.start()
 
 def preprocess(img):
-    # darken image to match training data conditions
     img = cv2.convertScaleAbs(img, alpha=0.6, beta=-30)
     img = cv2.resize(img, (64, 64))
     img = img / 255.0
